@@ -1,0 +1,10 @@
+"use strict";
+exports.__esModule = true;
+var usuario_1 = require("./usuario");
+var readLine = require("readline-sync");
+console.log("Casino las flores");
+var name = readLine.question("Cual es tu nombre?\n");
+var age = readLine.question("Cuantos anos tienes?\n");
+var usu1 = new usuario_1.Usuario(name, age);
+usu1.confirmName(name);
+usu1.confirmAgre(age);
