@@ -16,6 +16,13 @@ export class Usuario{
     public getName():string{
         return this.name
     }
+
+    public getMonedas():number{
+        return this.monedas
+    }
+    public setMonedas(monedas:number):void{
+        this.monedas=monedas
+    }
     
     public confirmName(name:string):void{
         if(!name){

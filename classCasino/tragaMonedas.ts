@@ -8,22 +8,36 @@ export class TragaMonedas extends Juegos{
 
     public numbAleatorio(){ return 1+Math.floor(Math.random()*3)}
 
-    public apuestaTragaMonedas():void{
+    public apuestaTragaMonedas():number{
         let uno:number = this.numbAleatorio()
         let dos:number= this.numbAleatorio()
         let tres:number = this.numbAleatorio()
         console.log(uno,dos,tres)
         if(uno===dos && uno === tres){
             switch(uno){
-                case 1: console.log("Ganaste 2 pesos")
+                case 1: return 2//
                 break;
-                case 2: console.log("Ganaste 5 pesos")
+                case 2: return 3
                 break;
-                case 3: console.log("Ganaste 10 pesos")
+                case 3: return 4
+                break;
+                default: return 0
                 break;
             }
         }else{
-            console.log("Perdiste")
+            return 0
         }
     }
 }
+
+
+const tm = new TragaMonedas("nombre",20,1)
+
+const result = tm.apuestaTragaMonedas()
+console.log(result)
+
+if(result>0){
+    console.log("Ganaste")
+}else(
+    console.log("Perdiste")
+)
