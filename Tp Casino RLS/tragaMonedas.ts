@@ -29,15 +29,3 @@ export class TragaMonedas extends Juegos{
         }
     }
 }
-
-
-const tm = new TragaMonedas("nombre",20,1)
-
-const result = tm.apuestaTragaMonedas()
-console.log(result)
-
-if(result>0){
-    console.log("Ganaste")
-}else(
-    console.log("Perdiste")
-)

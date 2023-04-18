@@ -31,49 +31,55 @@ export class Ruleta extends Juegos{
         }
     }
 
-    public apuestaColorN():void{
+    public apuestaColorN():boolean{
         let numbAleatorio = this.numbAleatorio()
-        console.log(numbAleatorio)
 
         if(this.negro.indexOf(numbAleatorio) != -1){
-            console.log(`\nGanaste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\ns=Salir`)
+            
+            return true
         }else{
-            console.log(`\nPerdiste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\ns=Salir`)  
+            return false
         }
     }  
 
-    public apuestaColorR():void{
+    public apuestaColorR():boolean{
         let numbAleatorio = this.numbAleatorio()
-        console.log(numbAleatorio)
 
         if(this.rojo.indexOf(numbAleatorio) != -1){
-            console.log(`\nGanaste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\ns=Salir`)
+           return true
         }else{
-            console.log(`\nPerdiste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\ns=Salir`)  
+            return false 
         }
     }  
 
-    public apuestaPar():void{
-        this.parImpar
-        let resultAleatorio = this.numbAleatorio()
-        console.log(resultAleatorio)
-
-       
-        if(this.par.indexOf(resultAleatorio) != -1){
-            console.log(`\nGanaste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\ns=Salir`)
+    public apuestaColorV():boolean{
+        let numbAleatorio = this.numbAleatorio()
+        if(this.verde === numbAleatorio){
+            return true
         }else{
-            console.log(`\nPerdiste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\ns=Salir`)
+            return false
         }
     }
 
-    public apuestaImpar():void{
+    public apuestaPar():boolean{
         this.parImpar()
         let resultAleatorio = this.numbAleatorio()
-       console.log(resultAleatorio)
-        if(this.impar.indexOf(resultAleatorio) != -1){
-            console.log(`\nGanaste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\ns=Salir`)
+       
+        if(this.par.indexOf(resultAleatorio) != -1){
+            return true
         }else{
-            console.log(`\nPerdiste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\ns=Salir`)
+            return false
+        }
+    }
+
+    public apuestaImpar():boolean{
+        this.parImpar()
+        let resultAleatorio = this.numbAleatorio()
+
+        if(this.impar.indexOf(resultAleatorio) != -1){
+            return true
+        }else{
+            return false
         }
     }
 

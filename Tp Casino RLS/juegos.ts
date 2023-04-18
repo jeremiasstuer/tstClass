@@ -25,6 +25,9 @@ export class Juegos{
         this.apuestaMin=apuestaMin
     }
 
+    public getMesa():number{
+        return this.mesa
+    }
     numbAleatorio() {
         
     }

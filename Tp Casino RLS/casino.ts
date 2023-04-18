@@ -4,7 +4,7 @@ import { iCasino } from "./iCasino";
 
 export class Casino implements iCasino {
     private usuario:Usuario[];
-    private juegos:Juegos[];
+    public juegos:Juegos[];
      fondo:number;
      nombre:string;
      direccion:string
@@ -37,7 +37,7 @@ export class Casino implements iCasino {
     }
 
     public setJuegos(newJuegos:Juegos):void{
-        this.juegos.push(...this.juegos,newJuegos)
+        this.juegos=[...this.juegos,newJuegos]
     }
 
     public getFondoC():number{
