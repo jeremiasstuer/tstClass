@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Usuario = void 0;
 var Usuario = /** @class */ (function () {
     function Usuario(name, age) {
@@ -30,7 +30,7 @@ var Usuario = /** @class */ (function () {
             console.log("Tu nombre no es valido");
         }
     };
-    Usuario.prototype.confirmAgre = function (age) {
+    Usuario.prototype.confirmAge = function (age) {
         if (!age || age < 18) {
             console.warn("No tenes la edad suficiente para ingresar");
             return false;

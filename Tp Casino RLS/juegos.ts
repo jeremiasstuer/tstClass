@@ -28,8 +28,6 @@ export class Juegos{
     public getMesa():number{
         return this.mesa
     }
-    numbAleatorio() {
-        
-    }
+
 
 }

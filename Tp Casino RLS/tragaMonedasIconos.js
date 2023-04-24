@@ -15,33 +15,34 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TragaMonedas = void 0;
-var juegos_1 = require("./juegos");
-var TragaMonedas = /** @class */ (function (_super) {
-    __extends(TragaMonedas, _super);
-    function TragaMonedas(nombre, apuestaMin, mesa) {
-        var _this = _super.call(this, nombre, mesa, apuestaMin) || this;
-        _this.icono = [1, 2, 3];
+exports.TragaMonedasIconos = void 0;
+var tragaMonedas_1 = require("./tragaMonedas");
+var TragaMonedasIconos = /** @class */ (function (_super) {
+    __extends(TragaMonedasIconos, _super);
+    function TragaMonedasIconos(nombre, apuestaMin, mesa) {
+        var _this = _super.call(this, nombre, apuestaMin, mesa) || this;
+        _this.icono = ["♠", "♥", "♦", "♣"];
         return _this;
     }
-    TragaMonedas.prototype.numbAleatorio = function () {
-        return this.icono[Math.floor(Math.random() * 3)];
-    };
-    TragaMonedas.prototype.apuestaTragaMonedas = function () {
+    TragaMonedasIconos.prototype.apuestaTragaMonedas = function () {
         var uno = this.numbAleatorio();
         var dos = this.numbAleatorio();
         var tres = this.numbAleatorio();
-        console.log(uno, dos, tres);
-        if (uno === dos && uno === tres) {
+        var cuatro = this.numbAleatorio();
+        console.log(uno, dos, tres, cuatro);
+        if (uno === dos && dos === tres && tres === cuatro) {
             switch (uno) {
-                case 1:
-                    return 2; //
+                case this.icono[0]:
+                    return 5; //
                     break;
-                case 2:
-                    return 3;
+                case this.icono[1]:
+                    return 10;
                     break;
-                case 3:
-                    return 4;
+                case this.icono[2]:
+                    return 15;
+                    break;
+                case this.icono[3]:
+                    return 20;
                     break;
                 default:
                     return 0;
@@ -52,6 +53,6 @@ var TragaMonedas = /** @class */ (function (_super) {
             return 0;
         }
     };
-    return TragaMonedas;
-}(juegos_1.Juegos));
-exports.TragaMonedas = TragaMonedas;
+    return TragaMonedasIconos;
+}(tragaMonedas_1.TragaMonedas));
+exports.TragaMonedasIconos = TragaMonedasIconos;

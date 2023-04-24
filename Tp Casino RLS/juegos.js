@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Juegos = void 0;
 var Juegos = /** @class */ (function () {
     function Juegos(nombre, mesa, apuestaMin) {
@@ -21,8 +21,6 @@ var Juegos = /** @class */ (function () {
     };
     Juegos.prototype.getMesa = function () {
         return this.mesa;
-    };
-    Juegos.prototype.numbAleatorio = function () {
     };
     return Juegos;
 }());

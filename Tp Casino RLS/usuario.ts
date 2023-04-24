@@ -36,7 +36,7 @@ export class Usuario{
             console.log("Tu nombre no es valido")
         }
     }
-    public confirmAgre(age:number):boolean{
+    public confirmAge(age:number):boolean{
         if(!age || age < 18){
             console.warn("No tenes la edad suficiente para ingresar")
             return false;

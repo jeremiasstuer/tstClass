@@ -6,7 +6,8 @@ import { Ruleta } from "./ruleta";
 import { Juegos } from "./juegos";
 import { BlackJack } from "./blackJack";
 import { TragaMonedas } from "./tragaMonedas";
-
+import { TragaMonedasFruta } from "./tragamonedasFrutas";
+import { TragaMonedasIconos } from "./tragaMonedasIconos";
 
 const casinoLf:Casino = new Casino("Las Flores","Ruta 3")
 const ruleta01 = new Ruleta("001",1,1)
@@ -16,8 +17,8 @@ casinoLf.setJuegos(ruleta01)
 casinoLf.setJuegos(ruleta02)
 casinoLf.setJuegos(ruleta03)
 const tragaMonedas01 = new TragaMonedas("001",1,1)
-const tragaMonedas02 = new TragaMonedas("002",5,2)
-const tragaMonedas03 = new TragaMonedas("003",10,3)
+const tragaMonedas02 = new TragaMonedasFruta("002",5,2)
+const tragaMonedas03 = new TragaMonedasIconos("003",10,3)
 casinoLf.setJuegos(tragaMonedas01)
 casinoLf.setJuegos(tragaMonedas02)
 casinoLf.setJuegos(tragaMonedas03)
@@ -61,6 +62,7 @@ usuario01.confirmName(name)
 const showMenu = ()=> console.log("\nA que juego quiere ingresar?\n\nr = Ruleta\nb = BlackJack\nt = Traga monedas\nc = Comprar fichas\ns = Salir")
 const loserMenu = ()=>  console.log(`\nPerdiste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\np = Numero Par\ni = Numero Impar\ns=Salir`)
 const winMenu = () => console.log(`\nGanaste...¿Quieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\np = Numero Par\ni = Numero Impar\ns=Salir`)
+const showMesas =()=>console.log(`Estas en la seccion de Ruletas\nA que mesa quiere ingresar?\n\na = Mesa ${ruleta01.getMesa()}\nb = Mesa ${ruleta02.getMesa()}\nc = Mesa ${ruleta03.getMesa()}\ns = Salir\n`)
 
 
 
@@ -246,14 +248,14 @@ if(apuestaUs === 0 || apuestaUs <= juegos.getApuestaMin()) {
 }
 }
 // funciones de traga monedas
-const funtTragaMonedas = function(usuario,juegos){
+const funtTragaMonedas = function(juegos){
     console.clear()
     const apuestaUs = parseInt(rl.question(`Ingresa tu apuesta\n`))
 if(apuestaUs === 0 || apuestaUs <= juegos.getApuestaMin()) {
-    console.log(`${usuario.getName()} tu apuesta es menor a la apuesta minima de ${juegos.getApuestaMin()}`)
+    console.log(`${usuario01.getName()} tu apuesta es menor a la apuesta minima de ${juegos.getApuestaMin()}`)
     console.log(`\nEmpieza a jugar...\na = Apostar\ns = Salir`)
 
-}else if(apuestaUs > usuario.getMonedas()){
+}else if(apuestaUs > usuario01.getMonedas()){
     console.clear()
     console.log(`No tienes el dinero suficiente, lo siento.`)
     console.log(`\nEmpieza a jugar...\na = Apostar\ns = Salir`)
@@ -262,19 +264,19 @@ if(apuestaUs === 0 || apuestaUs <= juegos.getApuestaMin()) {
     console.log(result)
     if(result>0){
         let win = apuestaUs *result
-        usuario.winMonedas(win)
-        console.table(usuario.getInfoUsuario())
+        usuario01.winMonedas(win)
+        console.table(usuario01.getInfoUsuario())
         console.log(`Ganaste...\nVolver a jugar...\na = Apostar\ns = Salir`)
     }else{
-        usuario.loseMonedas(apuestaUs) 
-        console.table(usuario.getInfoUsuario())    
+        usuario01.loseMonedas(apuestaUs) 
+        console.table(usuario01.getInfoUsuario())    
         console.log(`Perdiste...\nVolver a jugar...\na = Apostar\ns = Salir`)
     }
 }
 }
 
 
-if (usuario01.confirmAgre(age) === true){
+if (usuario01.confirmAge(age) === true){
     console.clear()
     console.log(`Bienvenido a `)
     logo()
@@ -288,14 +290,15 @@ if (usuario01.confirmAgre(age) === true){
         rl.promptCLLoop({
         r:()=>{ 
             console.clear()
-            console.log(`Estas en la seccion de Ruletas\nA que mesa quiere ingresar?\n\na = Mesa ${ruleta01.getMesa()}\nb = Mesa ${ruleta02.getMesa()}\nc = Mesa ${ruleta03.getMesa()}\ns = Salir\n`)
+            showMesas()
             rl.promptCLLoop({
                a:()=>{
                 console.clear()
                 console.log(`\nEleji a que apostarle\nr= Rojo\nn= Negro\nv= Verde\np = Numero Par\ni = Numero Impar\ns=Salir`)
                 rl.promptCLLoop({
                     r:()=>{
-                        apuestaRuletaColorR(usuario01,ruleta01,2)                
+                        apuestaRuletaColorR(usuario01,ruleta01,2)     
+                                   
                     },
                     n:()=>{
                         apuestaRuletaColorN(usuario01,ruleta01,2)
@@ -391,7 +394,7 @@ if (usuario01.confirmAgre(age) === true){
                         },
                         s:()=>{
                             console.clear()
-                            showMenu( )
+                            showMesas()
                             return true
                         }
                     })
@@ -405,7 +408,7 @@ if (usuario01.confirmAgre(age) === true){
                         },
                         s:()=>{
                                 console.clear()
-                                showMenu( )
+                                showMesas( )
                                 return true
                         }
                     })
@@ -419,7 +422,7 @@ if (usuario01.confirmAgre(age) === true){
                         },
                         s:()=>{
                                 console.clear()
-                                showMenu( )
+                                showMesas( )
                                 return true
                         }
                     })
@@ -441,11 +444,11 @@ if (usuario01.confirmAgre(age) === true){
                     console.log("Empieza a jugar...\na = Apostar\ns = Salir")
                     rl.promptCLLoop({
                         a:()=>{
-                            funtTragaMonedas(usuario01,tragaMonedas01)
+                            funtTragaMonedas(tragaMonedas01)
                         },
                         s:()=>{
                             console.clear()
-                            showMenu()
+                            showMesas()
                             return true
                         }
                     })
@@ -455,11 +458,11 @@ if (usuario01.confirmAgre(age) === true){
                     console.log("Empieza a jugar...\na = Apostar\ns = Salir")
                     rl.promptCLLoop({
                         a:()=>{
-                            funtTragaMonedas(usuario01,tragaMonedas02)
+                            funtTragaMonedas(tragaMonedas02)
                         },
                         s:()=>{
                             console.clear()
-                            showMenu()
+                            showMesas()
                             return true
                         }
                     })
@@ -469,11 +472,11 @@ if (usuario01.confirmAgre(age) === true){
                     console.log("Empieza a jugar...\na = Apostar\ns = Salir")
                     rl.promptCLLoop({
                         a:()=>{
-                            funtTragaMonedas(usuario01,tragaMonedas03)
+                            funtTragaMonedas(tragaMonedas03)
                         },
                         s:()=>{
                             console.clear()
-                            showMenu()
+                            showMesas()
                             return true
                         }
                     })

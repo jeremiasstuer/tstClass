@@ -15,33 +15,30 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TragaMonedas = void 0;
-var juegos_1 = require("./juegos");
-var TragaMonedas = /** @class */ (function (_super) {
-    __extends(TragaMonedas, _super);
-    function TragaMonedas(nombre, apuestaMin, mesa) {
-        var _this = _super.call(this, nombre, mesa, apuestaMin) || this;
-        _this.icono = [1, 2, 3];
+exports.TragaMonedasFruta = void 0;
+var tragaMonedas_1 = require("./tragaMonedas");
+var TragaMonedasFruta = /** @class */ (function (_super) {
+    __extends(TragaMonedasFruta, _super);
+    function TragaMonedasFruta(nombre, apuestaMin, mesa) {
+        var _this = _super.call(this, nombre, apuestaMin, mesa) || this;
+        _this.icono = ["banana", "manazana", "comodin"];
         return _this;
     }
-    TragaMonedas.prototype.numbAleatorio = function () {
-        return this.icono[Math.floor(Math.random() * 3)];
-    };
-    TragaMonedas.prototype.apuestaTragaMonedas = function () {
+    TragaMonedasFruta.prototype.apuestaTragaMonedas = function () {
         var uno = this.numbAleatorio();
         var dos = this.numbAleatorio();
         var tres = this.numbAleatorio();
         console.log(uno, dos, tres);
-        if (uno === dos && uno === tres) {
+        if (uno === dos && dos === tres) {
             switch (uno) {
-                case 1:
+                case this.icono[0]:
                     return 2; //
                     break;
-                case 2:
+                case this.icono[1]:
                     return 3;
                     break;
-                case 3:
-                    return 4;
+                case this.icono[2]:
+                    return 10;
                     break;
                 default:
                     return 0;
@@ -52,6 +49,6 @@ var TragaMonedas = /** @class */ (function (_super) {
             return 0;
         }
     };
-    return TragaMonedas;
-}(juegos_1.Juegos));
-exports.TragaMonedas = TragaMonedas;
+    return TragaMonedasFruta;
+}(tragaMonedas_1.TragaMonedas));
+exports.TragaMonedasFruta = TragaMonedasFruta;

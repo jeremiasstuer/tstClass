@@ -28,7 +28,7 @@ export class Casino implements iCasino {
         return this.direccion
     }
     
-    public setUsuario(usuario:Usuario){
+    public setUsuario(usuario:Usuario):void{
         this.usuario.push(usuario)
     }
 
@@ -43,7 +43,7 @@ export class Casino implements iCasino {
     public getFondoC():number{
         return this.fondo
     }
-    public setFondoC(fondo:number){
+    public setFondoC(fondo:number):void{
         this.fondo=fondo
     }
 

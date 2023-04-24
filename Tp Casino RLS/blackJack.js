@@ -23,7 +23,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlackJack = void 0;
 var juegos_1 = require("./juegos");
 var BlackJack = /** @class */ (function (_super) {
@@ -44,7 +44,7 @@ var BlackJack = /** @class */ (function (_super) {
         this.misCartas = [];
         this.cartasCroupier = [];
     };
-    BlackJack.prototype.getCartarCrou = function () {
+    BlackJack.prototype.getCartasCrou = function () {
         return this.cartasCroupier;
     };
     BlackJack.prototype.numbAleatorio = function () { return 1 + Math.floor(Math.random() * 11); };
@@ -57,7 +57,7 @@ var BlackJack = /** @class */ (function (_super) {
         var total = e.reduce(function (a, b) { return a + b; }, 0);
         return total;
     };
-    BlackJack.prototype.addcrou = function () {
+    BlackJack.prototype.addCrou = function () {
         if (this.sumarCartas(this.cartasCroupier) <= 16) {
             this.cartasCroupier.push(this.numbAleatorio());
         }
@@ -67,14 +67,14 @@ var BlackJack = /** @class */ (function (_super) {
             this.sumarCartas(this.getMisCartas());
             this.setMiNuevaCarta(this.numbAleatorio());
             console.log("Tus cartas = ".concat(this.getMisCartas(), " = ").concat(this.sumarCartas(this.getMisCartas())));
-            this.addcrou();
-            this.sumarCartas(this.getCartarCrou());
-            console.log("Cartas Croupier = ".concat(this.getCartarCrou(), " = ").concat(this.sumarCartas(this.getCartarCrou())));
+            this.addCrou();
+            this.sumarCartas(this.getCartasCrou());
+            console.log("Cartas Croupier = ".concat(this.getCartasCrou(), " = ").concat(this.sumarCartas(this.getCartasCrou())));
         }
     };
     BlackJack.prototype.winLose = function (usuario, apuestaUs, premio) {
-        if (this.sumarCartas(this.getMisCartas()) <= 21 && this.sumarCartas(this.getCartarCrou()) <= 21) {
-            if (this.sumarCartas(this.getMisCartas()) > this.sumarCartas(this.getCartarCrou())) {
+        if (this.sumarCartas(this.getMisCartas()) <= 21 && this.sumarCartas(this.getCartasCrou()) <= 21) {
+            if (this.sumarCartas(this.getMisCartas()) > this.sumarCartas(this.getCartasCrou())) {
                 console.log("Ganaste... Estos son tus puntos ".concat(this.sumarCartas(this.getMisCartas())));
                 var win = apuestaUs * premio;
                 usuario.winMonedas(win);
@@ -93,8 +93,8 @@ var BlackJack = /** @class */ (function (_super) {
             console.table(usuario.getInfoUsuario());
             console.log("Lo siento te pasas... Estos son tus puntos ".concat(this.sumarCartas(this.getMisCartas())));
         }
-        else if (this.sumarCartas(this.getCartarCrou())) {
-            console.log("El croupier se paso... Estos son sus puntos ".concat(this.sumarCartas(this.getCartarCrou())));
+        else if (this.sumarCartas(this.getCartasCrou())) {
+            console.log("El croupier se paso... Estos son sus puntos ".concat(this.sumarCartas(this.getCartasCrou())));
         }
     };
     return BlackJack;

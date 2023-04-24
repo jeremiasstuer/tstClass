@@ -1,11 +1,13 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var rl = require("readline-sync");
 var casino_1 = require("./casino");
 var usuario_1 = require("./usuario");
 var ruleta_1 = require("./ruleta");
 var blackJack_1 = require("./blackJack");
 var tragaMonedas_1 = require("./tragaMonedas");
+var tragamonedasFrutas_1 = require("./tragamonedasFrutas");
+var tragaMonedasIconos_1 = require("./tragaMonedasIconos");
 var casinoLf = new casino_1.Casino("Las Flores", "Ruta 3");
 var ruleta01 = new ruleta_1.Ruleta("001", 1, 1);
 var ruleta02 = new ruleta_1.Ruleta("002", 5, 2);
@@ -14,8 +16,8 @@ casinoLf.setJuegos(ruleta01);
 casinoLf.setJuegos(ruleta02);
 casinoLf.setJuegos(ruleta03);
 var tragaMonedas01 = new tragaMonedas_1.TragaMonedas("001", 1, 1);
-var tragaMonedas02 = new tragaMonedas_1.TragaMonedas("002", 5, 2);
-var tragaMonedas03 = new tragaMonedas_1.TragaMonedas("003", 10, 3);
+var tragaMonedas02 = new tragamonedasFrutas_1.TragaMonedasFruta("002", 5, 2);
+var tragaMonedas03 = new tragaMonedasIconos_1.TragaMonedasIconos("003", 10, 3);
 casinoLf.setJuegos(tragaMonedas01);
 casinoLf.setJuegos(tragaMonedas02);
 casinoLf.setJuegos(tragaMonedas03);
@@ -38,6 +40,7 @@ usuario01.confirmName(name);
 var showMenu = function () { return console.log("\nA que juego quiere ingresar?\n\nr = Ruleta\nb = BlackJack\nt = Traga monedas\nc = Comprar fichas\ns = Salir"); };
 var loserMenu = function () { return console.log("\nPerdiste...\u00BFQuieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\np = Numero Par\ni = Numero Impar\ns=Salir"); };
 var winMenu = function () { return console.log("\nGanaste...\u00BFQuieres apostar otra vez?\nr= Rojo\nn= Negro\nv= Verde\np = Numero Par\ni = Numero Impar\ns=Salir"); };
+var showMesas = function () { return console.log("Estas en la seccion de Ruletas\nA que mesa quiere ingresar?\n\na = Mesa ".concat(ruleta01.getMesa(), "\nb = Mesa ").concat(ruleta02.getMesa(), "\nc = Mesa ").concat(ruleta03.getMesa(), "\ns = Salir\n")); };
 // funciones de la ruleta
 var apuestaRuletaColorV = function (usuario, juego, premio) {
     var apuestaUs = parseInt(rl.question("Ingresa tu apuesta\n"));
@@ -207,7 +210,7 @@ var funcBlackJack = function (juegos, usuario, premio) {
             o: function () {
                 console.clear();
                 juegos.validacionOtraCarta();
-                console.log("Lo siento te pasaste\nt = Terminar\ns = salir");
+                console.log("Quieres pedir otra carta?\no = Otra\nt = Terminar\ns = salir");
             },
             t: function () {
                 console.clear();
@@ -224,14 +227,14 @@ var funcBlackJack = function (juegos, usuario, premio) {
     }
 };
 // funciones de traga monedas
-var funtTragaMonedas = function (usuario, juegos) {
+var funtTragaMonedas = function (juegos) {
     console.clear();
     var apuestaUs = parseInt(rl.question("Ingresa tu apuesta\n"));
     if (apuestaUs === 0 || apuestaUs <= juegos.getApuestaMin()) {
-        console.log("".concat(usuario.getName(), " tu apuesta es menor a la apuesta minima de ").concat(juegos.getApuestaMin()));
+        console.log("".concat(usuario01.getName(), " tu apuesta es menor a la apuesta minima de ").concat(juegos.getApuestaMin()));
         console.log("\nEmpieza a jugar...\na = Apostar\ns = Salir");
     }
-    else if (apuestaUs > usuario.getMonedas()) {
+    else if (apuestaUs > usuario01.getMonedas()) {
         console.clear();
         console.log("No tienes el dinero suficiente, lo siento.");
         console.log("\nEmpieza a jugar...\na = Apostar\ns = Salir");
@@ -241,18 +244,18 @@ var funtTragaMonedas = function (usuario, juegos) {
         console.log(result);
         if (result > 0) {
             var win = apuestaUs * result;
-            usuario.winMonedas(win);
-            console.table(usuario.getInfoUsuario());
+            usuario01.winMonedas(win);
+            console.table(usuario01.getInfoUsuario());
             console.log("Ganaste...\nVolver a jugar...\na = Apostar\ns = Salir");
         }
         else {
-            usuario.loseMonedas(apuestaUs);
-            console.table(usuario.getInfoUsuario());
+            usuario01.loseMonedas(apuestaUs);
+            console.table(usuario01.getInfoUsuario());
             console.log("Perdiste...\nVolver a jugar...\na = Apostar\ns = Salir");
         }
     }
 };
-if (usuario01.confirmAgre(age) === true) {
+if (usuario01.confirmAge(age) === true) {
     console.clear();
     console.log("Bienvenido a ");
     logo();
@@ -265,7 +268,7 @@ if (usuario01.confirmAgre(age) === true) {
     rl.promptCLLoop({
         r: function () {
             console.clear();
-            console.log("Estas en la seccion de Ruletas\nA que mesa quiere ingresar?\n\na = Mesa ".concat(ruleta01.getMesa(), "\nb = Mesa ").concat(ruleta02.getMesa(), "\nc = Mesa ").concat(ruleta03.getMesa(), "\ns = Salir\n"));
+            showMesas();
             rl.promptCLLoop({
                 a: function () {
                     console.clear();
@@ -365,7 +368,7 @@ if (usuario01.confirmAgre(age) === true) {
                         },
                         s: function () {
                             console.clear();
-                            showMenu();
+                            showMesas();
                             return true;
                         }
                     });
@@ -379,7 +382,7 @@ if (usuario01.confirmAgre(age) === true) {
                         },
                         s: function () {
                             console.clear();
-                            showMenu();
+                            showMesas();
                             return true;
                         }
                     });
@@ -393,7 +396,7 @@ if (usuario01.confirmAgre(age) === true) {
                         },
                         s: function () {
                             console.clear();
-                            showMenu();
+                            showMesas();
                             return true;
                         }
                     });
@@ -414,11 +417,11 @@ if (usuario01.confirmAgre(age) === true) {
                     console.log("Empieza a jugar...\na = Apostar\ns = Salir");
                     rl.promptCLLoop({
                         a: function () {
-                            funtTragaMonedas(usuario01, tragaMonedas01);
+                            funtTragaMonedas(tragaMonedas01);
                         },
                         s: function () {
                             console.clear();
-                            showMenu();
+                            showMesas();
                             return true;
                         }
                     });
@@ -428,11 +431,11 @@ if (usuario01.confirmAgre(age) === true) {
                     console.log("Empieza a jugar...\na = Apostar\ns = Salir");
                     rl.promptCLLoop({
                         a: function () {
-                            funtTragaMonedas(usuario01, tragaMonedas02);
+                            funtTragaMonedas(tragaMonedas02);
                         },
                         s: function () {
                             console.clear();
-                            showMenu();
+                            showMesas();
                             return true;
                         }
                     });
@@ -442,11 +445,11 @@ if (usuario01.confirmAgre(age) === true) {
                     console.log("Empieza a jugar...\na = Apostar\ns = Salir");
                     rl.promptCLLoop({
                         a: function () {
-                            funtTragaMonedas(usuario01, tragaMonedas03);
+                            funtTragaMonedas(tragaMonedas03);
                         },
                         s: function () {
                             console.clear();
-                            showMenu();
+                            showMesas();
                             return true;
                         }
                     });
