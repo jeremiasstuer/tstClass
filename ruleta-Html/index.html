@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorteo</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+	<div class="cont-nav">
+		<div class="box-3">
+			<div class="btn btn-three">
+			  <span>Back</span>
+			</div>
+		  </div>
+		  
+		<p class="monedasUs" >Monedas: <span id="monedasUs"></span>  💎</p>
+		<div>
+			<input class="input-apuesta" type="text " id="apuesta" placeholder="Apuesta">
+			<button id="btnCheck" class="btn-check ">check</button>
+		</div>
+	</div>
+
+	<h1 id="resultado"> Jugar</h1>
+	<div class="cont-img">
+		<img id="girar" class="img-ruleta" src="./img/ruleta.png" alt="">
+	</div>
+	<div class="todosBtn" id="todosBtn">
+		<div class="botonera" id="botonera">
+			<div class="cont-btn">
+				<button id="rojo" class="tBtn"  ><div class="rombo "></div></button>
+				<button id="negro" class="tBtn" ><div class="romboB "></div></button>
+				<button id="verde" class="tBtn" ><div class="romboG "></div></button>
+				
+			</div>
+			<div class="cont-btn">
+				<button id="par" class="tBtn" id="tBtn" >Par</button>
+				<button id="impar" class="tBtn" id="tBtn" >Impar</button> 
+			</div>
+		</div>
+	</div>	
+	<script src="./app.js"></script>
+</body>
+</html>
